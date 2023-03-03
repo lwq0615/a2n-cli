@@ -29,7 +29,7 @@ import fs from 'fs'
   }
 
   const url = 'https://github.com/lwq0615/lia-app.git'
-  console.log(url)
+  console.log("download from '" + url + "'")
 
   console.log(chalk.green('\n Start generating... \n'))
   // 出现加载图标
@@ -49,7 +49,7 @@ import fs from 'fs'
       // 更换项目name
       const pkg = JSON.parse(data)
       pkg.name = projectName
-      fs.writeFileSync(`./${projectName}/package.json`, JSON.stringify(pkg), {
+      fs.writeFileSync(`./${projectName}/package.json`, JSON.stringify(pkg, null, 2), {
         encoding: 'utf-8'
       }, (err) => {
         spinner.fail()
