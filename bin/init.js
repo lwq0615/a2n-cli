@@ -14,6 +14,7 @@ import pkg from '../package.json' assert { type: 'json' }
 import fs from 'fs'
 
 (function () {
+
   chalk.level = 1
   program.version(pkg.version)
   program.usage('<project-name>')
@@ -28,8 +29,17 @@ import fs from 'fs'
     return
   }
 
-  const url = 'https://github.com/lwq0615/lia-app.git'
-  console.log("download from '" + url + "'")
+  if (fs.existsSync(`./${projectName}-app`)) {
+    console.log(chalk.red(symbols.error), chalk.red(`Folder ${projectName}-app already exists`))
+    return
+  }
+  if (fs.existsSync(`./${projectName}-server`)) {
+    console.log(chalk.red(symbols.error), chalk.red(`Folder ${projectName}-server already exists`))
+    return
+  }
+
+  const appUrl = 'https://github.com/lwq0615/lia-app.git'
+  console.log("download from '" + appUrl + "'")
 
   console.log(chalk.green('\n Start generating... \n'))
   // 出现加载图标
@@ -37,19 +47,19 @@ import fs from 'fs'
   spinner.start()
 
   // 下载项目模板代码
-  download("direct:" + url, `./${projectName}`, { clone: true }, (err) => {
+  download("direct:" + appUrl, `./${projectName}-app`, { clone: true }, (err) => {
     if (err) {
       spinner.fail()
       console.log(chalk.red(symbols.error), chalk.red(`Generation failed. ${err}`))
       return
     }
     // 读取package.json文件
-    fs.readFile(`./${projectName}/package.json`, 'utf-8', (err, data) => {
+    fs.readFile(`./${projectName}-app/package.json`, 'utf-8', (err, data) => {
       if (err) console.log(chalk.red(symbols.error), chalk.red(err))
       // 更换项目name
       const pkg = JSON.parse(data)
       pkg.name = projectName
-      fs.writeFileSync(`./${projectName}/package.json`, JSON.stringify(pkg, null, 2), {
+      fs.writeFileSync(`./${projectName}-app/package.json`, JSON.stringify(pkg, null, 2), {
         encoding: 'utf-8'
       }, (err) => {
         spinner.fail()
@@ -60,6 +70,29 @@ import fs from 'fs'
     // 结束加载图标
     spinner.succeed()
     console.log(chalk.green(symbols.success), chalk.green('Generation completed!'))
-    console.log('\n To get started')
+    console.log('\n app init done')
+
+    const serverUrl = 'https://github.com/lwq0615/lia-server.git'
+    console.log("download from '" + serverUrl + "'")
+
+    console.log(chalk.green('\n Start generating... \n'))
+    // 出现加载图标
+    spinner.start()
+
+    // 下载项目模板代码
+    download("direct:" + serverUrl, `./${projectName}-server`, { clone: true }, (err) => {
+      if (err) {
+        spinner.fail()
+        console.log(chalk.red(symbols.error), chalk.red(`Generation failed. ${err}`))
+        return
+      }
+      // 结束加载图标
+      spinner.succeed()
+      console.log(chalk.green(symbols.success), chalk.green('Generation completed!'))
+      console.log('\n To get started')
+    })
   })
+
+
+
 })()
