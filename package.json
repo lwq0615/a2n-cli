@@ -1,9 +1,15 @@
 {
   "name": "lia-cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "lia项目脚手架",
   "main": "index.js",
   "type": "module",
+  "keywords": [
+    "lia",
+    "React",
+    "Springboot",
+    "cli"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

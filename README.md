@@ -5,5 +5,5 @@ lia项目脚手架
 ## 如何使用
 
 ```sh
-npx lia-cli init project-name
+npx lia-cli project-name
 ```
