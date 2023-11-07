@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-// 命令行工具
-import { program } from 'commander'
 // 显示 loading 动画
 import ora from 'ora'
 // 用来下载远程模板
@@ -10,23 +8,13 @@ import download from 'download-git-repo'
 import symbols from 'log-symbols'
 // 显示 loading 动画
 import chalk from 'chalk'
-import pkg from '../package.json' assert { type: 'json' }
 import fs from 'fs'
 
-(function () {
-
-  console.log(program.args)
-  chalk.level = 1
-  program.version(pkg.version)
-  program.usage('<project-name>')
-  program.parse(process.argv)
-  // 当没有输入参数的时候给个提示
-  if (program.args.length < 1) return program.help()
+export default function create([projectName]) {
 
   // 第一个参数是 project-name
-  let projectName = program.args[0]
   if (!projectName) {
-    console.log(chalk.red('\n Project-name should not be empty! \n '))
+    console.log(chalk.red("\nError command: a2n-cli create <project-name>, project-name can't be empty! "))
     return
   }
 
@@ -70,6 +58,4 @@ import fs from 'fs'
     console.log('\n a2n init done')
   })
 
-
-
-})()
+}

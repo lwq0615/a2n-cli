@@ -5,5 +5,5 @@ a2n项目脚手架
 ## 如何使用
 
 ```sh
-npx a2n-cli project-name
+a2n-cli create project-name
 ```

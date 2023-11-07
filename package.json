@@ -1,6 +1,6 @@
 {
   "name": "a2n-cli",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "a2n项目脚手架",
   "main": "index.js",
   "type": "module",
@@ -12,8 +12,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "init": "./bin/init.js"
+    "a2n-cli": "./bin/index.js"
   },
+  "files": [
+    "bin"
+  ],
   "author": "liweiqiang",
   "license": "ISC",
   "dependencies": {
