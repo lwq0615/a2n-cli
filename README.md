@@ -1,9 +1,9 @@
-# lia-cli
+# a2n-cli
 
-lia项目脚手架
+a2n项目脚手架
 
 ## 如何使用
 
 ```sh
-npx lia-cli project-name
+npx a2n-cli project-name
 ```

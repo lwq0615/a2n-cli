@@ -1,13 +1,11 @@
 {
-  "name": "lia-cli",
-  "version": "1.0.4",
-  "description": "lia项目脚手架",
+  "name": "a2n-cli",
+  "version": "1.0.1",
+  "description": "a2n项目脚手架",
   "main": "index.js",
   "type": "module",
   "keywords": [
-    "lia",
-    "React",
-    "Springboot",
+    "a2n",
     "cli"
   ],
   "scripts": {
