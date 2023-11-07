@@ -10,9 +10,9 @@ import pkg from '../package.json' assert { type: 'json' }
   chalk.level = 1
   program.name('a2n-cli')
     .version(pkg.version)
-    .usage('<command> <options>')
+    .usage('<command> [args]')
   program.command('create')
-    .description('创建应用(options: [project-name])')
+    .description('创建应用(args: [project-name])')
     .action((options, command) => {
       create(command.args)
     })
